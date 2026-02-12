@@ -1,0 +1,29 @@
+{
+  "name": "alynea-playwright-tests",
+  "version": "1.0.0",
+  "description": "Playwright E2E tests for Alynea platform and API testing",
+  "scripts": {
+    "test": "playwright test",
+    "test:auth": "playwright test tests/auth.spec.ts tests/auth-validation.spec.ts",
+    "test:projects": "playwright test tests/projects.spec.ts",
+    "test:api": "playwright test tests/api.spec.ts",
+    "test:mobile": "playwright test tests/mobile.spec.ts",
+    "test:chromium": "playwright test --project=chromium",
+    "test:firefox": "playwright test --project=firefox",
+    "test:webkit": "playwright test --project=webkit",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "test:ui": "playwright test --ui",
+    "test:report": "playwright show-report",
+    "test:codegen": "playwright codegen https://staging-stack.alynea.io"
+  },
+  "keywords": ["playwright", "e2e", "testing", "typescript"],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.41.0",
+    "@types/node": "^20.11.0",
+    "typescript": "^5.3.3"
+  }
+}
+

@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  playwright-tests:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: alynea-playwright-tests
+    volumes:
+      # Mount test results and reports to host
+      - ./test-results:/app/test-results
+      - ./playwright-report:/app/playwright-report
+      - ./test-results/error-logs:/app/test-results/error-logs
+    environment:
+      - CI=true
+      - PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
+    command: npx playwright test --reporter=html,list
+    
+  # Service to run tests on specific browser
+  playwright-chromium:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: alynea-playwright-chromium
+    volumes:
+      - ./test-results:/app/test-results
+      - ./playwright-report:/app/playwright-report
+    environment:
+      - CI=true
+    command: npx playwright test --project=chromium --reporter=html,list
+
+  playwright-firefox:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: alynea-playwright-firefox
+    volumes:
+      - ./test-results:/app/test-results
+      - ./playwright-report:/app/playwright-report
+    environment:
+      - CI=true
+    command: npx playwright test --project=firefox --reporter=html,list
+
+  playwright-webkit:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: alynea-playwright-webkit
+    volumes:
+      - ./test-results:/app/test-results
+      - ./playwright-report:/app/playwright-report
+    environment:
+      - CI=true
+    command: npx playwright test --project=webkit --reporter=html,list
+

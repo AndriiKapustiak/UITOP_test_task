@@ -1,0 +1,14 @@
+node_modules
+test-results
+playwright-report
+.git
+.github
+*.log
+.DS_Store
+.env
+.vscode
+*.md
+!README.md
+!PROJECT_STRUCTURE.md
+!SETUP_GUIDE.md
+
